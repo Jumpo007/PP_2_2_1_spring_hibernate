@@ -17,6 +17,7 @@ public class User {
               ", firstName='" + firstName + '\'' +
               ", lastName='" + lastName + '\'' +
               ", email='" + email + '\'' +
+              ", userCar=" + userCar +
               '}';
    }
 
@@ -28,13 +29,24 @@ public class User {
 
    @Column(name = "email")
    private String email;
+   @OneToOne(cascade = CascadeType.ALL)
+   private Car userCar;
+
+   public Car getUserCar() {
+      return userCar;
+   }
+
+   public void setUserCar(Car userCar) {
+      this.userCar = userCar;
+   }
 
    public User() {}
-   
-   public User(String firstName, String lastName, String email) {
+
+   public User(String firstName, String lastName, String email, Car userCar) {
       this.firstName = firstName;
       this.lastName = lastName;
       this.email = email;
+      this.userCar = userCar;
    }
 
    public Long getId() {
